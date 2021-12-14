@@ -12,7 +12,8 @@ import { ModelAsignar } from '../models/modelasignar';
 })
 export class AfiliacionService {
 
-  private urlafil:string ='http://localhost:9292/api/afiliaciones';
+  // private urlafil:string ='http://localhost:9292/api/afiliaciones';
+  private urlafil:string ='https://app-adra.herokuapp.com/api/afiliaciones';
   constructor(private http : HttpClient, private router: Router, private authService: AuthService) { }
 
   private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});

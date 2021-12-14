@@ -34,7 +34,8 @@ export class AuthService {
   }
 
   login(usuario: Usuario):Observable<any>{
-    const urlEndpoint = 'http://localhost:9292/oauth/token';
+    //const urlEndpoint = 'http://localhost:9292/oauth/token';
+    const urlEndpoint = 'https://app-adra.herokuapp.com/oauth/token';
 
     const credenciales = btoa('angularapp' + ':' + '1234567');
     const httpHeaders = new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded',

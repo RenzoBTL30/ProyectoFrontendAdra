@@ -11,7 +11,8 @@ import { Anuncio } from '../models/anuncio';
 })
 export class AnuncioService {
 
-  private urlanuncio:string ='http://localhost:9292/api/anuncios';
+  // private urlanuncio:string ='http://localhost:9292/api/anuncios';
+  private urlanuncio:string ='https://app-adra.herokuapp.com/api/anuncios'
   constructor(private http : HttpClient, private router: Router, private authService: AuthService) { }
   
   private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
