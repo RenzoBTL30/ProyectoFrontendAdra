@@ -1,0 +1,45 @@
+<div class="sidebar">
+    <ul class="nav-links">
+        <li>
+            <a [routerLink]="['/menuprincipal2/inicio']">
+                <i class="bx fas fa-home"></i>
+                <span class="link_name">Inicio</span>
+            </a>
+            <ul class="sub-menu blank">
+                <li><a class="link_name" href="#">Inicio</a></li>
+            </ul>
+        </li>
+        <li>
+            <div class="iocn-link">
+                <div class="capacitaciones">
+                    <i class="bx fas fa-file-alt"></i>
+                    <span class="link_name">Capacitaciones</span>
+                </div>
+                <i class="accordion-button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree"></i>
+            </div>
+            
+            <ul class="sub-menu accordion-body" id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+                <li ><a [routerLink]="['/menuprincipal2/modulos/vista']" style="margin-left: 45px; color: rgb(219, 219, 219);">Módulos</a></li>
+                <li ><a [routerLink]="['/menuprincipal2/seminarios']" style="margin-left: 45px; color: rgb(219, 219, 219);">Seminarios</a></li>
+            </ul>
+        </li>
+        <li>
+            <a [routerLink]="['/menuprincipal2/anuncios']">
+                <i class="bx fas fa-bullhorn"></i>
+                <span class="link_name">Crear Anuncio</span>
+            </a>
+            <ul class="sub-menu blank">
+                <li><a class="link_name" href="#">Crear Anuncio</a></li>
+            </ul>
+        </li>
+        <li>
+            <a [routerLink]="['/menuprincipal2/reportes']">
+                <i class="bx fas fa-table"></i>
+                <span class="link_name">Generar Reporte</span>
+            </a>
+            <ul class="sub-menu blank">
+                <li><a class="link_name" href="#">Generar Reporte</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,107 @@
+<ng-container [ngSwitch]="rol">
+        <div class="barra-socio position-fixed" *ngSwitchCase="'Socio'">
+            <div class="row">
+                <div class="col-8 d-flex" style="text-align: left;">
+        
+                    <div class="boton">
+                        <a [routerLink]="['/menuprincipal/inicio']">Inicio</a>
+                    </div>
+        
+                    <div class="boton">
+                        <a [routerLink]="['/menuprincipal/historialmodulos']" style="text-align: center;">Historial de módulos</a>
+                    </div>
+        
+                    <div class="boton">
+                        <a data-bs-toggle="modal" data-bs-target="#modal-pedido-oracion">Pedidos de oración</a>
+                    </div>
+    
+                </div>
+                <div class="col-4 d-flex flex-row-reverse">
+                    <div class="boton">
+                        <a (click)="logout()">Cerrar sesión</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <adra-pedidos-oracion></adra-pedidos-oracion>
+
+    
+
+    <div class="barra-jefebi position-fixed" *ngSwitchCase="'JefeBI'">
+        <div class="row">
+            <div class="col-8 d-flex" style="text-align: left;">
+                
+                <div class="nombrerol">
+                    <h5>BI ADRA</h5>
+                </div>
+    
+            </div>
+            <div class="col-4 d-flex flex-row-reverse">
+                <div class="boton">
+                    <a (click)="logout()">Cerrar sesión</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="barra-asesor position-fixed" *ngSwitchCase="'Asesor'">
+        <div class="row">
+            <div class="col-8 d-flex" style="text-align: left;">
+    
+                <div class="nombrerol">
+                    <h5>Asesores ADRA</h5>
+                </div>
+
+                <div class="boton">
+                    <a [routerLink]="['/menuprincipal/inicio']">Inicio</a>
+                </div>
+
+            </div>
+            <div class="col-4 d-flex flex-row-reverse">
+                <div class="boton">
+                    <a (click)="logout()">Cerrar sesión</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="barra-gerencia position-fixed" *ngSwitchCase="'Gerencia'">
+        <div class="row">
+            <div class="col-8 d-flex" style="text-align: left;">
+    
+                <div class="nombrerol">
+                    <h5>Gerencia</h5>
+                </div>
+
+            </div>
+            <div class="col-4 d-flex flex-row-reverse">
+                <div class="boton">
+                    <a (click)="logout()">Cerrar sesión</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="barra-default position-fixed" *ngSwitchDefault="">
+        <div class="row">
+            <div class="col-8 d-flex" style="text-align: left;">
+    
+                <div class="boton">
+                    <a [routerLink]="['/menuprincipal2/inicio']">Inicio</a>
+                </div>
+    
+            </div>
+            <div class="col-4 d-flex flex-row-reverse">
+                <div class="boton">
+                    <a (click)="logout()">Cerrar sesión</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>
+    
+
+
+

@@ -1,0 +1,172 @@
+<div class="home-content">
+    <div>
+        <i class="fa fas fa-table icon_right fa-2x fa-border cuadroicon" aria-hidden="true"></i>&nbsp;<b
+            style="font-size: x-large;">Reportes</b>
+        <div class="row cajaopciones">
+            <div class="col-4">
+                <div class="mb-3">
+                    <h5 class="col-form-label">Reporte por:</h5>
+                    <div class="col-sm-12">
+                        <select class="form-select" aria-label="Default select example" [(ngModel)]="optionValue_a">
+                            <optgroup label="Selecciona">
+                                <option value="1">Usuarios</option>
+                                <option value="2">Banco Comunal</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
+                <div style="margin-top: 15px;">
+                    <ng-container *ngIf="optionValue_a == 2">
+                        <h5 class="col-form-label">Banco Comunal:</h5>
+                        <div class="col-sm-12">
+                            <select class="form-select" aria-label="Default select example" [(ngModel)]="idbancocomunal">
+                                <optgroup label="Selecciona">
+                                    <option *ngFor="let bc of bancosComunal" value="{{bc.id}}" >{{bc.no_banco_comunal}}</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+            
+            <div class="col-5">
+                <div>
+
+                    <ng-container *ngIf="optionValue_a == 2">
+                        <h5 class="col-form-label">Tipo de Reporte:</h5>                    
+                        <select class="form-select col-sm-6" aria-label="Default select example" [(ngModel)]="tipReporteBanco">
+                            <optgroup label="Selecciona">
+                                <option value="1">Socios</option>
+                                <option value="2">Asistencia</option>
+                                <option value="3">Progreso</option>
+                                <option value="4">Valoración</option>
+                            </optgroup>
+                        </select>
+                    </ng-container>
+                
+                    <ng-container *ngIf="optionValue_a == 1">
+                        <h5 class="col-form-label">Tipo de Reporte:</h5>                    
+                        <select class="form-select col-sm-6" aria-label="Default select example" [(ngModel)]="tipReporteUsuario">
+                            <optgroup label="Selecciona">
+                                <option value="5">Usuarios Activos</option>
+                                <option value="6">Roles</option>
+                            </optgroup>
+                        </select>
+                    </ng-container>
+                    
+                </div>
+            </div>
+
+            <div class="col-3">
+
+            </div>
+            
+        </div>
+
+        <div style="margin-top: 25px;">
+            <button class="btn btn-primary" (click)="generar()" >Generar</button>
+            <button class="btn btn-primary" style="margin-left: 15px;" (click)="descargarExcel()" >Descargar</button>
+        </div>
+
+        <table class="table table-bordered" style="margin-top: 30px;" *ngIf="validador == 1" #table1>
+            <thead>
+                <tr>
+                  <th scope="col" *ngFor="let tit of titulos1; let i = index">{{tit}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let r1 of reporte1">
+                    <td>{{r1.NOMBRE}}</td>
+                    <td>{{r1.APELLIDO_PATERNO}}</td>
+                    <td>{{r1.DNI}}</td>
+                    <td>{{r1.ESTADO}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-bordered" style="margin-top: 30px;" *ngIf="validador == 2" #table2>
+            <thead>
+                <tr>
+                  <th scope="col" *ngFor="let tit of titulos2; let i = index">{{tit}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let r2 of reporte2">
+                    <td>{{r2.NOMBRE}}</td>
+                    <td>{{r2.APELLIDO_PATERNO}}</td>
+                    <td>{{r2.DNI}}</td>
+                    <td>{{r2.ROL}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-bordered" style="margin-top: 30px;" *ngIf="validador == 3" #table3>
+            <thead>
+                <tr>
+                  <th scope="col" *ngFor="let tit of titulos3; let i = index">{{tit}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let r3 of reporte3">
+                    <td>{{r3.CAPACITACION}}</td>
+                    <td>{{r3.NOMBRE}}</td>
+                    <td>{{r3.APELLIDO_PATERNO}}</td>
+                    <td>{{r3.RECURSOS_VISTOS}}</td>
+                    <td>{{r3.TOTAL_RECURSOS}}</td>
+                    <td>{{redondear(r3.PROGRESO)}}%</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-bordered" style="margin-top: 30px;" *ngIf="validador == 4" #table4>
+            <thead>
+                <tr>
+                  <th scope="col" *ngFor="let tit of titulos4">{{tit}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let r4 of reporte4">
+                    <td>{{r4.Nombre}}</td>
+                    <td>{{r4.Apellido_Paterno}}</td>
+                    <td>{{r4.Seminario}}</td>
+                    <td>{{r4.Comentario}}</td>
+                    <td>{{r4.Valoracion}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-bordered" style="margin-top: 30px;" *ngIf="validador == 5" #table5>
+            <thead>
+                <tr>
+                  <th scope="col" *ngFor="let tit of titulos5">{{tit}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let r5 of reporte5">
+                    <td>{{r5.Nombre}}</td>
+                    <td>{{r5.Apellido_Paterno}}</td>
+                    <td>{{r5.Apellido_Materno}}</td>
+                    <td>{{r5.Correo_Electronico}}</td>
+                    <td>{{r5.Telefono}}</td>
+                    <td>{{r5.Banco_Comunal}}</td>
+                    <td>{{r5.Asesor}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-bordered" style="margin-top: 30px;" *ngIf="validador == 6" #table6>
+            <thead>
+                <tr>
+                  <th scope="col" *ngFor="let tit of titulos6; let i = index">{{tit}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let r6 of reporte6">
+                    <td>{{r6.Capacitacion}}</td>
+                    <td>{{r6.Banco_Comunal}}</td>
+                    <td>{{r6.Valoracion}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

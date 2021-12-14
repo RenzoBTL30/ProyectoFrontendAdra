@@ -1,0 +1,106 @@
+a{
+    text-decoration: none;
+    color: white;
+}
+
+#talleres-reunion{
+    padding: 10px;
+}
+
+#talleres-reunion:last-child{
+    margin-right: 0px;
+}
+
+.barra-roja{
+    background-color: red;
+    color: white;
+    font-size: 20px;
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.reunion{
+    margin-top: 20px;
+    border: 1px black transparent;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    background-color: white;
+}
+
+.link-entrar{
+    background-color: rgb(13, 175, 35);
+    padding: 10px;
+}
+
+.link-pendiente{
+    background-color: blue;
+    padding: 10px;
+}
+
+.link-terminado{
+    background-color: red;
+    padding: 10px;
+}
+
+
+.escala-valoracion{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.escala-valoracion div{
+    text-align: center;
+    max-width: 80px;
+    color: black;
+}
+
+.escala-valoracion div a p{
+    margin-top: 8px;
+    font-size: 15px;
+    color: black;
+}
+
+.carita-tamaño{
+    font-size: 70px;
+}
+
+.tamaño-modal{
+    max-width: 600px;
+}
+
+.muy-inst{
+    color: red;
+}
+
+.inst{
+    color: rgb(252, 113, 63);
+}
+
+.ni-inst-satis{
+    color: rgb(196, 196, 19);
+}
+
+.satis{
+    color: rgb(6, 206, 6);
+}
+
+.muy-satis{
+    color: green;
+}
+
+.table td a{
+    color: black;
+}
+
+.opcion-valoracion{
+    background-color: white;
+    border: none;
+}
+
+.opcion-valoracion:focus{
+    border: 0.6px solid rgb(84, 84, 243);
+    border-radius: 10px;
+}

@@ -1,0 +1,150 @@
+<div class="home-content">
+    <div>
+        <i class="fa fas fa-bullhorn icon_right fa-2x fa-border cuadroicon" aria-hidden="true"></i>&nbsp;<b style="font-size: x-large;">Anuncios</b>
+        <div class="centro1">
+            <div class="col-sm-4" id="busca">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="name" placeholder="Buscar">
+                </div>
+            </div>
+            <div class="boton">
+                <button href="#" data-bs-toggle="modal" data-bs-target="#crearanuncio" class="btn btn-primary">+ Crear
+                    nuevo anuncio</button>
+            </div>
+        </div>
+
+        <table class="table table-bordered" style="margin-top: 20px;">
+            <thead>
+                <tr>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Fecha inicio</th>
+                  <th scope="col">Fecha fin</th>
+                  <th scope="col">URL</th>
+                  <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let a of anuncios">
+                    <td>{{a.no_anuncio}}</td>
+                    <td>{{ a.fe_inicio | date:'dd-MM-yyyy HH:mm:ss' }}</td>
+                    <td>{{ a.fe_fin | date:'dd-MM-yyyy HH:mm:ss' }}</td>
+                    <td>
+                        <a href="{{a.di_anuncio}}" class="btn btn-sm" style="background-color: blue;" target="_blank"><i class="fas fa-external-link-alt" target="_blank"></i></a>
+                    </td>
+                    <td>
+                        <button (click)="cargarDatos(a.id)" style="margin-left: 10px;" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#editaranuncio"><i class="fas fa-edit"></i></button>
+                        <button style="margin-left: 10px;" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt" (click)="delete(a)"></i></button>
+                    </td>
+                </tr>
+                
+            </tbody>
+        </table>
+        
+
+    </div>
+</div>
+
+<div class="modal fade" id="crearanuncio" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog tamaño-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Crear nuevo anuncio</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" #closebutton></button>
+            </div>
+            <div class="modal-body" style="padding: 30px;">
+                <form method="post">
+                    <div class="mb-3 row">
+                        <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Nombre:</label>
+                        <div class="col-sm-10">
+                          <input [(ngModel)]="anuncio.no_anuncio" type="text" class="form-control" id="inputNombre" name="no_anuncio" #nombre>
+                        </div>
+                    </div>
+    
+                    <div class="mb-3 row">
+                        <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Fecha inicio:</label>
+                        <div class="col-sm-10">
+                          <input [(ngModel)]="anuncio.fe_inicio" type="date" class="form-control" id="inputNombre" name="fe_inicio" #fecha_inicio>
+                        </div>
+                    </div>
+    
+                    <div class="mb-3 row">
+                        <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Fecha fin:</label>
+                        <div class="col-sm-10">
+                          <input [(ngModel)]="anuncio.fe_fin" type="date" class="form-control" id="inputNombre" name="fe_fin" #fecha_fin>
+                        </div>
+                    </div>
+    
+                    <div class="mb-3 row">
+                        <label for="inputNombre" class="col-sm-2 col-form-label label-bold">URL:</label>
+                        <div class="col-sm-10">
+                          <input [(ngModel)]="anuncio.di_anuncio" type="text" class="form-control" id="inputNombre" name="di_anuncio" #url>
+                        </div>
+                    </div>
+    
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label label-bold">Subir una imagen:</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="file" id="formFile">
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="crear()">Crear</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="editaranuncio" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog tamaño-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Editar nuevo anuncio</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" #closebutton2></button>
+            </div>
+            <div class="modal-body" style="padding: 30px;">
+                <div class="mb-3 row">
+                    <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Nombre:</label>
+                    <div class="col-sm-10">
+                      <input [(ngModel)]="anuncio_editar.no_anuncio" type="text" class="form-control" id="inputNombre">
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Fecha inicio:</label>
+                    <div class="col-sm-10">
+                      <input [(ngModel)]="anuncio_editar.fe_inicio" type="date" class="form-control" id="inputNombre">
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Fecha fin:</label>
+                    <div class="col-sm-10">
+                      <input [(ngModel)]="anuncio_editar.fe_fin" type="date" class="form-control" id="inputNombre">
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="inputNombre" class="col-sm-2 col-form-label label-bold">URL:</label>
+                    <div class="col-sm-10">
+                      <input [(ngModel)]="anuncio_editar.di_anuncio" type="text" class="form-control" id="inputNombre">
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="formFile" class="form-label label-bold">Subir una imagen:</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="file" id="formFile">
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="editar()">Editar</button>
+            </div>
+        </div>
+    </div>
+</div>

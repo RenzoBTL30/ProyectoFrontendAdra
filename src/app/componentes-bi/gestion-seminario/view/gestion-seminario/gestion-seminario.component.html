@@ -1,0 +1,195 @@
+<div class="home-content">
+    <div>
+        <i class="fa fas fa-file-alt icon_right fa-2x fa-border cuadroicon" aria-hidden="true"></i>&nbsp;<b style="font-size: x-large;">Capacitaciones</b>
+        <div class="centro1">
+            <div class="modulo">
+                <h4 style="text-align: center;">SEMINARIOS</h4>
+            </div>
+            <div class="col-sm-4" id="busca">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="name" placeholder="Buscar">
+                </div>
+            </div>
+            <div class="boton">
+                <button href="#" data-bs-toggle="modal" data-bs-target="#crearseminario" class="btn btn-primary">+ Crear
+                    nuevo seminario</button>
+            </div>
+        </div>
+
+        <table class="table table-bordered" style="margin-top: 20px;">
+            <thead>
+                <tr>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Tema</th>
+                  <th scope="col">Fecha inicio</th>
+                  <th scope="col">Fecha cierre</th>
+                  <th scope="col">URL</th>
+                  <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let s of seminarios; let i = index">
+                    <td>{{s.Nombre}}</td>
+                    <td>{{s.Tema}}</td>
+                    <td>{{ s.FechaInicio | date:'dd-MM-yyyy HH:mm:ss' }}</td>
+                    <td>{{ s.FechaFin | date:'dd-MM-yyyy HH:mm:ss' }}</td>
+                    <td>
+                        <a href="{{s.Direccion}}" class="btn btn-sm" style="background-color: blue;" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                    </td>
+                    <td>
+                        <button (click)="cargarDatos(i)" style="margin-left: 10px;" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#editarseminario"><i class="fas fa-edit"></i></button>
+                        <button (click)="delete(s)" style="margin-left: 10px;" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="modal fade" id="crearseminario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog tamaño-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Crear nuevo seminario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" #closebutton></button>
+            </div>
+            <div class="modal-body" style="padding: 30px;">
+                <form>
+                    <div class="mb-3 row">
+                        <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Nombre:</label>
+                        <div class="col-sm-10">
+                          <input [(ngModel)]="capacitacion.no_capacitacion" type="text" class="form-control" id="inputNombre" name="no_capacitacion" #nombre_capacitacion>
+                        </div>
+                    </div>
+    
+                    <div class="mb-3 row">
+                        <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Tema:</label>
+                        <div class="col-sm-10">
+                          <input [(ngModel)]="sesion.de_tema" type="text" class="form-control" id="inputNombre" name="de_tema" #tema>
+                        </div>
+                    </div>
+    
+                    <div class="mb-3 row">
+                        <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Fecha inicio:</label>
+                        <div class="col-sm-10">
+                          <input [(ngModel)]="sesion.fe_inicio" type="datetime-local" class="form-control" id="inputNombre" name="fecha_inicio" #fech_inicio>
+                        </div>
+                    </div>
+    
+                    <!---
+                    <div class="mb-3 row">
+                        <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Hora inicio:</label>
+                        <div class="col-sm-10">
+                          <input [(ngModel)]="hora_inicio" type="time" class="form-control" id="inputNombre" name="hora_inicio" #hor_inicio>
+                        </div>
+                    </div>
+                    -->
+    
+    
+                    
+    
+                    <div class="mb-3 row">
+                        <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Fecha fin:</label>
+                        <div class="col-sm-10">
+                          <input [(ngModel)]="sesion.fe_fin" type="datetime-local" class="form-control" id="inputNombre" name="fecha_fin" #fech_fin>
+                        </div>
+                    </div>
+    
+    
+    
+                    <!---
+                    <div class="mb-3 row">
+                        <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Hora fin:</label>
+                        <div class="col-sm-10">
+                          <input [(ngModel)]="hora_fin" type="time" class="form-control" id="inputNombre" name="hora_fin" #hor_fin>
+                        </div>
+                    </div>
+                    -->
+                    
+                    
+                    <div class="mb-3 row">
+                        <label for="inputNombre" class="col-sm-2 col-form-label label-bold">URL:</label>
+                        <div class="col-sm-10">
+                          <input [(ngModel)]="recurso.di_url" type="text" class="form-control" id="inputNombre" name="di_url" #url>
+                        </div>
+                    </div>
+                </form>
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="crear()">Crear</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editarseminario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog tamaño-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Editar nuevo seminario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" #closebutton2 aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="padding: 30px;">
+                <form>
+                    <div class="mb-3 row">
+                        <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Nombre:</label>
+                        <div class="col-sm-10">
+                          <input [(ngModel)]="capacitacion_editar.no_capacitacion" type="text" class="form-control" id="de_tema" name="no_capacitacion" #nombre_cap_edit>
+                        </div>
+                    </div>
+    
+                    <div class="mb-3 row">
+                        <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Tema:</label>
+                        <div class="col-sm-10">
+                          <input [(ngModel)]="sesion_editar.de_tema" type="text" class="form-control" id="de_tema" name="de_tema" #tema_edit>
+                        </div>
+                    </div>
+    
+                    <div class="mb-3 row">
+                        <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Fecha inicio:</label>
+                        <div class="col-sm-10">
+                          <input [(ngModel)]="sesion_editar.fe_inicio" type="datetime-local" class="form-control" id="fecha_inicio" name="fecha_inicio" #fech_inicio_edit>
+                        </div>
+                    </div>
+    
+                    <!---
+                    <div class="mb-3 row">
+                        <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Hora inicio:</label>
+                        <div class="col-sm-10">
+                          <input [(ngModel)]="hora_inicio" type="time" class="form-control" id="inputNombre" name="hora_inicio" #hor_inicio>
+                        </div>
+                    </div>
+                    -->
+                    
+                    <div class="mb-3 row">
+                        <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Fecha fin:</label>
+                        <div class="col-sm-10">
+                          <input [(ngModel)]="sesion_editar.fe_fin" type="datetime-local" class="form-control" id="fecha_fin" name="fecha_fin" #fech_fin_edit>
+                        </div>
+                    </div>
+    
+                    <!---
+                    <div class="mb-3 row">
+                        <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Hora fin:</label>
+                        <div class="col-sm-10">
+                          <input [(ngModel)]="hora_fin" type="time" class="form-control" id="inputNombre" name="hora_fin" #hor_fin>
+                        </div>
+                    </div>
+                    -->
+    
+                    <div class="mb-3 row">
+                        <label for="inputNombre" class="col-sm-2 col-form-label label-bold">URL:</label>
+                        <div class="col-sm-10">
+                          <input [(ngModel)]="recurso_editar.di_url" type="text" class="form-control" id="di_url" name="di_url" #url_edit>
+                        </div>
+                    </div>
+                </form>
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="editar()">Editar</button>
+            </div>
+        </div>
+    </div>
+</div>

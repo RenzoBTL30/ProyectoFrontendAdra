@@ -1,0 +1,29 @@
+<div id="contenido_clase" style="padding: 25px;">
+    <div class="cabecera_recurso">
+      <h3 style="display: block;">{{tema}}</h3>
+      <div style="width: 25%; padding-top: 5px;">
+        <div class="progress" style="height: 25px;">
+          <div class="progress-bar" role="progressbar" [ngStyle]="{'width': calcularProgreso()}" style="font-size: 18px;"
+              aria-valuenow="calcularProgreso()%" aria-valuemin="0" aria-valuemax="100">{{calcularProgreso()}}</div>
+        </div>
+      </div>
+    </div>
+    <div class="centro" style="margin-top: 25px;">
+        <table class="table table-striped align-middle">
+            <tbody>
+              <ng-container *ngFor="let r of controlesvista">
+                <tr *ngIf="(r.recurso.es_recurso == '1') && (r.recurso.sesion.id == id_sesion) && (r.afiliacion.id == idafiliacion)">
+                    <td class="td-icono"><i class="fas fa-file-pdf td-icono"></i></td>
+                    <td><a href="{{r.recurso.di_url}}" target="_blank" (click)="actualizarVisto(idafiliacion, r.recurso.id)" >{{r.recurso.no_recurso}}</a></td>
+                    <ng-container [ngSwitch]="r.es_visto">
+                      <td *ngSwitchCase="'0'" class="td-icono-visto"><i class="fas fa-check-circle icono-visto"></i></td>
+                      <td *ngSwitchCase="'1'" class="td-icono-visto"><i class="fas fa-check-circle icono-visto icono-visto-verde"></i></td>
+                    </ng-container>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+    </div>
+</div>
+
+<adra-evaluacion></adra-evaluacion>

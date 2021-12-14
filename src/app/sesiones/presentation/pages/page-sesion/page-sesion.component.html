@@ -1,0 +1,58 @@
+<body id="fondo">
+    <adra-barrasuperior></adra-barrasuperior>
+    <adra-navbar></adra-navbar>
+    <div class="container-fluid espacio-trabajo">
+        <div class="row" style="padding: 20px;">
+            <div class="col-4">
+                <div id="lista-talleres" class="espaciado-cajas">
+                    <div class="encabezado-modulos mb-2 espaciado sombra-input">
+                        <h5 style="margin-top: 5px;">Módulo del mes</h5>
+                    </div>
+                    <div id="talleres">
+                        <ng-container *ngFor="let a of afiliaciones">
+                            <div *ngIf="a.socio.id == idsocio && a.capacitacion.tipo_capacitacion.no_tipo_capacitacion == 'Modulo' && a.capacitacion.es_capacitacion == '1'">
+                                <a href="">
+                                    <div class="taller d-flex flex-row">
+                                        <img src="/assets/img/facebook-emp.jpg" width="35%" alt="">
+                                        <div class="descripcion">
+                                            <h5>{{a.capacitacion.no_capacitacion}}</h5>
+                                        </div>
+                                    </div>
+                                </a>
+                                <div class="progress" style="height: 25px;">
+                                    <div class="progress-bar" role="progressbar" [ngStyle]="{'width': calcularProgreso(a.capacitacion.ca_recursos, a.ca_recursos_vistos)}" style="font-size: 18px;"
+                                        aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{calcularProgreso(a.capacitacion.ca_recursos, a.ca_recursos_vistos)}}</div>
+                                </div>
+                                <div class="lista-sesiones">
+                                    
+                                            <h5 style="margin-top: 15px; color: red; font-weight: bold;">SESIONES</h5>
+                                            <table class="table">
+                                                <tbody>
+                                                    <ng-container *ngFor="let s of sesiones; let i = index">
+                                                        <tr *ngIf="s.capacitacion.id == a.capacitacion.id && s.es_sesion == '1' && compararFechas(s.fe_inicio)">
+                                                            <td>
+                                                                <a [routerLink]="['/sesion', s.id]">
+                                                                    {{i+1}}. {{s.de_tema}}
+                                                                </a>
+                                                            </td>
+                                                            <td><i class="fas fa-check-circle icono-visto"></i></td>
+                                                        </tr>
+                                                    </ng-container>
+                                                    
+                                                </tbody>
+                                            </table>
+                                        
+                                    
+                                </div>
+                            </div>
+                        </ng-container>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-8">
+                <adra-sesion></adra-sesion>
+            </div>
+        </div>
+    </div>
+</body>

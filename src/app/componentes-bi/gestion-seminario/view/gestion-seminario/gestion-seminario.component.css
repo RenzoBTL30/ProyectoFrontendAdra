@@ -1,0 +1,93 @@
+a{
+    text-decoration: none;
+    color: white;
+}
+
+.home-content {
+    padding: 25px;
+    align-items: center;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.cabeza {
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.cabecera2 {
+    width: 100%;
+    display: flex;
+    color: white;
+    justify-content: space-between;
+    background-color: #9c1111;
+    padding: 0 10px 0 10px;
+}
+
+.cabecera {
+    width: 100%;
+    position: fixed;
+    z-index: 999;
+}
+
+.centro1 {
+    display: flex;
+    margin-top: 15px;
+}
+.modulo{
+    margin: 8px;
+    }
+    .boton{
+    margin: 8px;
+    }
+    #busca{
+     margin: 8px;
+    }
+
+ .tamaño-modal{
+     max-width: 600px;
+}
+
+.label-bold{
+    font-weight: bold;
+}
+
+.icon_right{
+    margin-right: 10px;
+}
+
+.cuadroicon{
+    width: 50px;
+    height: 50px;
+}
+
+.lista-modulos{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: space-around;
+    column-gap: 55px;
+    row-gap: 45px;
+    margin-top: 20px;
+    padding: 10px;
+}
+
+.card{
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.card-title{
+    font-size: 18px;
+}
+
+.lista-modulos > a{
+    text-decoration: none;
+    color: black;
+    
+}
+
+td button i{
+    font-size: 13px;
+    color: white;
+}

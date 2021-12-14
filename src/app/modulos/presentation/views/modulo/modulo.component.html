@@ -1,0 +1,68 @@
+<ng-container [ngSwitch]="rol">
+    <div id="lista-talleres" class="espaciado-cajas" *ngSwitchCase="'Socio'">
+        <div class="encabezado-modulos mb-2 espaciado sombra-input">
+            <h5 style="margin-top: 5px;">Módulo del mes</h5>
+        </div>
+        <div id="talleres">
+            <ng-container *ngFor="let a of afiliaciones">
+                <div *ngIf="a.socio.id == idsocio && a.capacitacion.tipo_capacitacion.no_tipo_capacitacion == 'Modulo' && a.capacitacion.es_capacitacion == '1'">
+                    <a href="">
+                        <div class="taller d-flex flex-row">
+                            <img src="https://www.adra.org.pe/sites/default/files/inline-images/vol_te_formamos.png" width="35%" alt="">
+                            <div class="descripcion">
+                                <h5>{{a.capacitacion.no_capacitacion}}</h5>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="progress" style="height: 25px;">
+                        <div class="progress-bar" role="progressbar" [ngStyle]="{'width': calcularProgreso(a.capacitacion.ca_recursos, a.ca_recursos_vistos)}" style="font-size: 18px;"
+                            aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{calcularProgreso(a.capacitacion.ca_recursos, a.ca_recursos_vistos)}}</div>
+                    </div>
+                    <div class="lista-sesiones">
+                        
+                                <h5 style="margin-top: 15px; color: red; font-weight: bold;">SESIONES</h5>
+                                <table class="table">
+                                    <tbody>
+                                        <ng-container *ngFor="let s of sesiones; let i = index">
+                                            <tr *ngIf="s.capacitacion.id == a.capacitacion.id && s.es_sesion == '1' && compararFechas(s.fe_inicio)">
+                                                <td>
+                                                    <a [routerLink]="['/sesion', s.id]">
+                                                        {{i+1}}. {{s.de_tema}}
+                                                    </a>
+                                                </td>
+                                                <td><i class="fas fa-check-circle icono-visto"></i></td>
+                                            </tr>
+                                        </ng-container>
+                                        
+                                    </tbody>
+                                </table>
+                            
+                        
+                    </div>
+                </div>
+            </ng-container>
+            
+        </div>
+    </div>
+
+    <div id="lista-talleres" class="espaciado-cajas" *ngSwitchCase="'Asesor'">
+        <div class="encabezado-modulos mb-2 espaciado sombra-input">
+            <h5 style="margin-top: 5px;">Módulos</h5>
+        </div>
+        <div id="talleres">
+            <ng-container *ngFor="let l of listaCapacAsesor">
+                <div>
+                    <a [routerLink]="['/moduloasesor', l.IDCAPACITACION]">
+                        <div class="taller d-flex flex-row">
+                            <img src="https://www.adra.org.pe/sites/default/files/inline-images/vol_te_formamos.png" width="35%" alt="">
+                            <div class="descripcion">
+                                <h5>{{l.CAPACITACION}}</h5>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </ng-container>
+            
+        </div>
+    </div>
+</ng-container>

@@ -1,0 +1,115 @@
+<div id="talleres-reunion" class="espaciado-cajas">
+    <div class="barra-roja">
+        <i class="fas fa-video"></i>
+        Seminarios en vivo
+    </div>
+
+        <ng-container *ngFor="let se of seminarios; let i = index" [ngSwitch]="compararFechas(se.FechaInicio)">
+            <div class="reunion" *ngSwitchCase="true">
+                <p>{{se.Nombre}}</p>
+                <div class="link-entrar" #color_cambiar>
+                        <a *ngIf="validador2 == 0" (click)="mostrarEncuesta($event); obteneridSesion(se.Id_ses, se.Id_cap)" href="{{se.Direccion}}" target="_blank">
+                            <i class="fas fa-video"></i>
+                            En vivo, entra ahora
+                        </a>
+
+                        <a *ngIf="validador2 == 1" style="color: white; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                            <i class="fas fa-video"></i>
+                            Encuesta pendiente
+                        </a>
+
+                        <a *ngIf="validador2 == 2" style="color: white;">
+                            <i class="fas fa-video"></i>
+                            Encuesta finalizada
+                        </a>
+                                           
+                </div>
+            </div>
+           
+
+            <div class="reunion" *ngSwitchCase="false">
+                <p>{{se.Nombre}}</p>
+                <div class="link-pendiente" style="color:white;">
+                        <i class="fas fa-video"></i>
+                        Comienza el <br> {{se.FechaInicio | date:'dd-MM-yyyy HH:mm:ss'}}
+                </div>
+            </div>
+       
+        </ng-container>
+</div>
+
+<!-- Cambio si el usuario es Asesor Adra
+     cuando un seminario finaliza, cambia el boton a "Finalizado"
+
+        <div class="link-terminado" style="color: white;">
+            <i class="fas fa-video"></i>
+            Finalizado
+        </div>
+
+-->
+
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog tamaño-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Valoración</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" #closebutton></button>
+                </div>
+                <div class="modal-body">
+                    
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label label-bold">Comentario:</label>
+                            <textarea [(ngModel)]="control_vista.de_comentario" name="de_comentario" maxlength="200" class="form-control" id="exampleFormControlTextarea1"
+                                (keyup)="onKey($event)"></textarea>
+                            <p id="contador-caract" style="margin-top: 5px; text-align: right;">{{contador}}/200</p>
+                        </div>
+                    
+                    
+                    <div class="escala-valoracion">
+                        <div>
+                            <button class="opcion-valoracion" style="cursor: pointer;" (click)="enviarvaloracion(1)">
+                                <i class="far fa-dizzy carita-tamaño muy-inst"></i>
+                                <p>Muy insatisfecho</p>
+                            </button>
+
+                        </div>
+
+                        <div>
+                            <button class="opcion-valoracion" style="cursor: pointer;" (click)="enviarvaloracion(2)">
+                                <i class="far fa-frown carita-tamaño inst"></i>
+                                <p>Insatisfecho</p>
+                            </button>
+                        </div>
+
+                        <div>
+                            <button class="opcion-valoracion" style="cursor: pointer;" (click)="enviarvaloracion(3)">
+                                <i class="far fa-meh carita-tamaño ni-inst-satis"></i>
+                                <p>Ni satisfecho ni insatisfecho</p>
+                            </button>
+                        </div>
+
+                        <div>
+                            <button class="opcion-valoracion" style="cursor: pointer;" (click)="enviarvaloracion(4)">
+                                <i class="far fa-smile carita-tamaño satis"></i>
+                                <p>Satisfecho</p>
+                            </button>
+                        </div>
+
+                        <div>
+                            <button class="opcion-valoracion" style="cursor: pointer;" (click)="enviarvaloracion(5)">
+                                <i class="far fa-smile-beam carita-tamaño muy-satis"></i>
+                                <p>Muy satisfecho</p>
+                            </button>
+                        </div>
+
+                    </div>
+                        
+                </div>
+                <div class="modal-footer" style="justify-content: center;">
+                    <h4>¡Gracias por tu valoración!</h4>
+                </div>
+            </div>
+        </div>
+    </div>

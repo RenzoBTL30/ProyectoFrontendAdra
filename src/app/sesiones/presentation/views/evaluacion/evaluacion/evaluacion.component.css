@@ -1,0 +1,54 @@
+.pregunta{
+    margin-bottom: 20px;
+}
+
+.escala-valoracion{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.escala-valoracion div{
+    text-align: center;
+    max-width: 80px;
+    color: black;
+}
+
+.escala-valoracion div a p{
+    margin-top: 8px;
+    font-size: 15px;
+    color: black;
+}
+
+.carita-tamaño{
+    font-size: 70px;
+}
+
+.tamaño-modal{
+    max-width: 600px;
+}
+
+.muy-inst{
+    color: red;
+}
+
+.inst{
+    color: rgb(252, 113, 63);
+}
+
+.ni-inst-satis{
+    color: rgb(196, 196, 19);
+}
+
+.satis{
+    color: rgb(6, 206, 6);
+}
+
+.muy-satis{
+    color: green;
+}
+
+.table td a{
+    color: black;
+}

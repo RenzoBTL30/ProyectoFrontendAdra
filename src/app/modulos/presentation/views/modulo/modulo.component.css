@@ -1,0 +1,305 @@
+/*Navbar donde sale la imagen de ADRA (del LOGIN)*/
+
+.navbar{
+    padding-left: 30px;
+    padding-right: 30px;
+    z-index: 1;
+}
+
+.redes-sociales{
+    display: flex;
+    justify-content: space-between;
+    width: 25%;
+    margin-left: 35px;
+}
+
+/*Navbar donde sale la imagen de ADRA (del sistema mismo)*/
+
+
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+.descripcion h5{
+    text-decoration: none;
+    color: black;
+}
+
+
+
+
+#cinta-opciones{
+    display: flex;
+    flex-direction: row;
+    width: 55%;
+    justify-content: flex-end;
+}
+
+#cinta-opciones:first-child{
+    justify-content: center;
+}
+
+.paginas{
+    display: flex;
+    justify-content: space-between;
+    width: 45%;
+    align-items: center;
+    align-content: center;
+}
+
+
+
+
+.opc{
+    text-decoration: none;
+    display: block;
+    font-size: 20px;
+}
+
+.opc a i{
+    font-size: 30px;
+}
+
+.logincaja{
+    margin: 50px auto;
+    width: 75%;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 60px;
+    padding-right: 60px;
+}
+
+.logincaja > h3{
+    font-family: Tahoma;
+    font-weight: bold;
+    display: block;
+    color: green;
+    text-align: center;
+    font-size: 30px;
+    position: relative;
+    line-height : 40px;
+}
+
+.logincaja > h4{
+    font-family: Tahoma;
+    font-weight: bold;
+    display: block;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.input-group > input{
+    border: 1px black solid;
+    margin-bottom: 8px;
+}
+
+#boton{
+    font-family: Tahoma;
+}
+
+#olvi{
+    text-align: center;
+    margin-top: 40px;
+    border-top: 1px black solid;
+    border-bottom: 1px black solid;
+    font-family: Tahoma;
+}
+
+.main{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.imagen-recuperacion{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.caja-recuperacion{
+    position: absolute;
+    width: 40%;
+    padding: 40px;
+    background-color: white;
+    border-radius: 20px;
+    border: 3px solid green;
+    top: 50px;
+}
+
+#user{
+    font-size: 20px;
+    color: white;
+}
+
+
+.barra-sesion{
+    background-color: rgb(51, 50, 50);
+    color: white;
+    font-size: 20px;
+    text-align: right;
+    padding: 10px;
+    padding-right: 20px;
+    width: 100%;
+    z-index: 2;
+}
+
+.barra-sesion-aserv{
+    background-color: rgb(137, 150, 19);
+    color: white;
+    font-size: 20px;
+    padding-top: 5px;
+    padding-right: 20px;
+    padding-left: 20px;
+    width: 100%;
+    z-index: 2;
+}
+
+#fondo{
+    padding-top: 65px;
+    background-color: rgb(231, 230, 225);
+}
+
+#lista-talleres{
+    border: 1px black transparent;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    background-color: white;
+}
+
+.descripcion{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    padding-left: 20px;
+    font-size: 14px;
+    padding-top: 5px;
+}
+
+.taller{
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.espacio-trabajo{
+    margin-top: 50px;
+}
+
+#anuncios{
+    border: 1px black transparent;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    background-color: white;
+}
+
+.espaciado-cajas{
+    margin-right: 0px;
+}
+
+#talleres-reunion{
+    padding: 10px;
+}
+
+#talleres-reunion:last-child{
+    margin-right: 0px;
+}
+
+.barra-roja{
+    background-color: red;
+    color: white;
+    font-size: 20px;
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.reunion{
+    margin-top: 20px;
+    border: 1px black transparent;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    background-color: white;
+}
+
+.link-entrar{
+    background-color: rgb(13, 175, 35);
+    padding: 10px;
+}
+
+.link-pendiente{
+    background-color: blue;
+    padding: 10px;
+}
+
+.link-terminado{
+    background-color: red;
+    padding: 10px;
+}
+
+.encabezado-modulos{
+    border: 1px solid black;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.icono-visto{
+    font-size: 20px;
+    color: rgb(204, 204, 204);
+}
+
+.escala-valoracion{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.escala-valoracion div{
+    text-align: center;
+    max-width: 80px;
+    color: black;
+}
+
+.escala-valoracion div a p{
+    margin-top: 8px;
+    font-size: 15px;
+    color: black;
+}
+
+.carita-tamaño{
+    font-size: 70px;
+}
+
+.tamaño-modal{
+    max-width: 600px;
+}
+
+.muy-inst{
+    color: red;
+}
+
+.inst{
+    color: rgb(252, 113, 63);
+}
+
+.ni-inst-satis{
+    color: rgb(196, 196, 19);
+}
+
+.satis{
+    color: rgb(6, 206, 6);
+}
+
+.muy-satis{
+    color: green;
+}
+
+.table td a{
+    color: black;
+}

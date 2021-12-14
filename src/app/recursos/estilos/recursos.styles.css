@@ -1,0 +1,134 @@
+.navbar{
+    padding-left: 30px;
+    padding-right: 30px;
+    z-index: 1;
+}
+
+.redes-sociales{
+    display: flex;
+    justify-content: space-between;
+    width: 25%;
+    margin-left: 35px;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+.boton{
+    cursor: pointer;
+    padding: 8px 15px;
+}
+
+.nombrerol{
+    padding: 8px 15px;
+    text-align: center;
+    margin-top: 3px;
+}
+
+.boton a {
+    text-align: center;
+}
+
+.boton:hover{
+    background-color: rgb(158, 160, 160);
+}
+
+.descripcion h5{
+    text-decoration: none;
+    color: black;
+}
+
+
+#cinta-opciones{
+    display: flex;
+    flex-direction: row;
+    width: 55%;
+    justify-content: flex-end;
+}
+
+#cinta-opciones:first-child{
+    justify-content: center;
+}
+
+.paginas{
+    display: flex;
+    justify-content: space-between;
+    width: 45%;
+    align-items: center;
+    align-content: center;
+}
+
+
+
+
+.opc{
+    text-decoration: none;
+    display: block;
+    font-size: 20px;
+}
+
+.opc a i{
+    font-size: 30px;
+}
+
+.barra-socio{
+    background-color: rgb(51, 50, 50);
+    color: white;
+    font-size: 20px;
+    text-align: right;
+    padding-right: 20px;
+    padding-left: 20px;
+    width: 100%;
+    z-index: 2;
+}
+
+.barra-jefebi{
+    background-color: rgb(139, 9, 9);
+    color: white;
+    font-size: 20px;
+    text-align: right;
+    padding-right: 20px;
+    padding-left: 20px;
+    width: 100%;
+    z-index: 2;
+}
+
+.barra-asesor{
+    background-color: rgb(129, 129, 8);
+    color: white;
+    font-size: 20px;
+    text-align: right;
+    padding-right: 20px;
+    padding-left: 20px;
+    width: 100%;
+    z-index: 2;
+}
+
+.barra-gerencia{
+    background-color: rgb(25, 12, 143);
+    color: white;
+    font-size: 20px;
+    text-align: right;
+    padding-right: 20px;
+    padding-left: 20px;
+    width: 100%;
+    z-index: 2;
+}
+
+.barra-default{
+    background-color: darkblue;
+    color: white;
+    font-size: 20px;
+    text-align: right;
+    padding-right: 20px;
+    padding-left: 20px;
+    width: 100%;
+    z-index: 2;
+}
+
+#user{
+    font-size: 20px;
+    color: white;
+}

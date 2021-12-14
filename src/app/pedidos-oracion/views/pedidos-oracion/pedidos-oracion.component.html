@@ -1,0 +1,21 @@
+<div class="modal fade" id="modal-pedido-oracion" tabindex="-1" aria-labelledby="modal-pedido-oracion" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Pedidos de Oración</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" #closebutton></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="message-text" class="col-form-label">En este espacio introduzca sus pedidos de oración, agradecimientos o peticiones.</label>
+              <textarea [(ngModel)]="pedido.de_pedido_oracion" name="de_pedido_oracion" class="form-control cajadetexto" id="message-text" placeholder="Escribe aquí" #descripcion></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" (click)="crear()">Enviar</button>
+        </div>
+      </div>
+    </div>
+  </div>

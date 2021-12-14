@@ -1,0 +1,181 @@
+<div class="home-content">
+    <div>
+        <i class="fa fas fa-file-alt icon_right fa-2x fa-border cuadroicon" aria-hidden="true"></i>&nbsp;<b
+            style="font-size: x-large;">Capacitaciones</b>
+        <div class="centro1">
+            <div class="modulo">
+                <h4 style="text-align: center;">MÓDULOS</h4>
+            </div>
+            <div class="col-sm-4" id="busca">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="name" placeholder="Buscar">
+                </div>
+            </div>
+            <div class="boton">
+                <button href="#" data-bs-toggle="modal" data-bs-target="#crear" class="btn btn-primary" (click)="limpiar()">+ Crear
+                    nuevo módulo</button>
+            </div>
+            <div class="boton">
+                <button href="#" data-bs-toggle="modal" data-bs-target="#asignar" class="btn btn-primary" (click)="listarBancos()">Asignar Capacitaciones</button>
+            </div>
+        </div>
+
+        <div class="lista-modulos">
+            <ng-container *ngFor="let c of capacitaciones" >
+                <div class="card text-center" style="width: 15rem;" *ngIf="(c.es_capacitacion == '1') && (c.tipo_capacitacion.id == 1)">
+                    <a [routerLink]="['/menuprincipal2/modulos/sesiones', c.id]">
+                        <img src="https://www.adra.org.pe/sites/default/files/inline-images/vol_te_formamos.png" class="card-img-top" alt="..">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title" style="margin-bottom: 20px;">{{c.no_capacitacion}}</h5>
+                        <div style="display:flex; justify-content: flex-end; gap: 8px;">
+                            <button (click)="cargarDatos(c.id)" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#editar"><i class="fas fa-edit"></i></button>
+                            <button class="btn btn-danger"><i
+                                    class="fas fa-trash-alt" (click)="delete(c)"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="crear" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog tamaño-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Crear Nuevo Módulo</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" #closebutton aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="padding: 30px;" >
+                <form method="post">
+                    <div class="mb-3 row">
+                        <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Nombre:</label>
+                        <div class="col-sm-10">
+                            <input [(ngModel)]="capacitacion.no_capacitacion" type="text" class="form-control" id="no_capacitacion" name="no_capacitacion" #nombre>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label label-bold">Descripcion:</label>
+                        <textarea [(ngModel)]="capacitacion.de_capacitacion" maxlength="200" class="form-control" id="de_capacitacion"
+                            (keyup)="onKey($event)" name="de_capacitacion" #descripcion></textarea>
+                        <p id="contador-caract" style="margin-top: 5px; text-align: right;">{{contador}}/200</p>
+                    </div>
+    
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label label-bold">Subir una imagen:</label>
+                        <input class="form-control" type="file" id="formFile">
+                    </div>
+
+                </form>
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="crear()">Crear</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="editar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog tamaño-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Editar Nuevo Módulo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" #closebutton2 aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="padding: 30px;" >
+                    <form>
+                        <div class="mb-3 row">
+                            <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Nombre:</label>
+                            <div class="col-sm-10">
+                                <input [(ngModel)]="capacitacion_editar.no_capacitacion" type="text" class="form-control" id="no_capacitacion" name="no_capacitacion" #nombre_edit>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label label-bold">Descripcion:</label>
+                            <textarea [(ngModel)]="capacitacion_editar.de_capacitacion" maxlength="100" class="form-control" id="de_capacitacion"
+                                (keyup)="onKey($event)" name="de_capacitacion" #descripcion_edit></textarea>
+                            <p id="contador-caract" style="margin-top: 5px; text-align: right;">{{contador}}/100</p>
+                        </div>
+        
+                        <div class="mb-3">
+                            <label for="formFile" class="form-label label-bold">Subir una imagen:</label>
+                            <input class="form-control" type="file" id="formFile">
+                        </div>
+    
+                    </form>
+                    
+    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" (click)="editar()">Editar</button>
+                </div>
+            </div>
+        </div>
+</div>    
+
+<div class="modal fade" id="asignar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog tamaño-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Asignar Capacitaciones</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" #closebutton3 aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="padding: 30px;" >
+                
+                <label for="exampleFormControlTextarea1" class="form-label label-bold">Bancos Comunales:</label>
+                <div class="mb-3 ">
+                    <select class="form-select" aria-label="Default select example" [(ngModel)]="idbancocomunal" (change)="enviarseleccionadoBancos(idbancocomunal)">
+                        <optgroup label="Selecciona">
+                            <option *ngFor="let bc of bancos" value="{{bc.id}}">{{bc.no_banco_comunal}}</option>
+                        </optgroup>
+                    </select>
+                </div>
+
+                <div id="lista-seleccion" style="display: flex; flex-direction: row;">
+                    <div *ngFor="let item of listadotemporalBancos; let i = index" class="elemento" #elemento1>{{item}} <a *ngIf="(item)" style="cursor: pointer;" (click)="eliminarseleccionadoBancos(i)">X</a></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6">
+                        <label for="exampleFormControlTextarea1" id="segundo-list" class="form-label label-bold">Capacitaciones:</label>
+                        <div class="mb-3 ">
+                            <select class="form-select" aria-label="Default select example" [(ngModel)]="idcap1" (change)="enviarseleccionadoCapac(idcap1)">
+                                <optgroup label="Selecciona">
+                                    <option *ngFor="let c of capacitaciones" value="{{c.id}}">{{c.no_capacitacion}}</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="col-6">
+                        <label for="exampleFormControlTextarea1" id="segundo-list" class="form-label label-bold">Seminarios:</label>
+                        <div class="mb-3 ">
+                            <select class="form-select" aria-label="Default select example" [(ngModel)]="idcap2" (change)="enviarseleccionadoCapac(idcap2)">
+                                <optgroup label="Selecciona">
+                                      <option *ngFor="let s of seminarios" value="{{s.Id_cap}}">{{s.Nombre}}</option>
+                                 </optgroup>
+                            </select>
+                        </div>
+                    </div>
+                    
+
+                </div>
+
+                
+
+                
+                <div id="lista-seleccion" style="display: flex; flex-direction: row;">
+                    <div *ngFor="let item of listadotemporalCapac; let i = index" class="elemento" #elemento2>{{item}} <a *ngIf="(item)" style="cursor: pointer;" (click)="eliminarseleccionadoCapac(i)">X</a></div>
+                </div>
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="asignar()">Asignar</button>
+            </div>
+        </div>
+    </div>
+</div>

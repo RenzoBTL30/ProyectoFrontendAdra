@@ -1,0 +1,36 @@
+<div class="row" style="padding: 20px;" >
+    <div class="col-3" style="margin: auto;">
+        
+            <div id="clase" style="text-align: center;">
+                <img src="/assets/img/icono-usuario.png" alt="" width="40%">
+                <div style="margin-top: 20px;">
+                    <h4 style="text-align: center;">{{nombre}} {{apepat}} {{apemat}}</h4>
+                </div>
+            </div>
+        
+    </div>
+    <div class="col-9">
+        <div id="contenido_clase">
+            <div class="cabecera_recurso">
+                <h3> PROGRESO - SESIONES</h3>
+            </div>
+            <div class="centro">
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr *ngFor="let l of listaProgresoPorSesiones">
+                            <td> <a [routerLink]="['/moduloasesor',idcap,'socio','sesion',idsoc,l.ID_SESION,l.PROGRESO]">{{l.TEMA}}</a> </td>
+                            <td>
+                                <div class="progress" style="height: 25px;">
+                                    <div class="progress-bar" role="progressbar" [ngStyle]="{'width': l.PROGRESO +'%'}"
+                                        style="width: 25%; font-size: 18px; background-color: green;" aria-valuenow="25"
+                                        aria-valuemin="0" aria-valuemax="100">{{l.PROGRESO}}%</div>
+                                </div>
+                            </td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

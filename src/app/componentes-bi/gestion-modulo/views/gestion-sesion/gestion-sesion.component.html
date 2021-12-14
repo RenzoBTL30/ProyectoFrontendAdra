@@ -1,0 +1,296 @@
+<div class="home-content">
+    <div>
+        <b style="font-size: 35px;">{{nombre_cap}}</b>
+        <h5 style="margin-top: 25px; font-weight: bold;">Descripción:</h5>
+        <h5 style="text-align: justify; margin-top: 20px; font-size: 18px;">{{descrip_cap}}</h5>
+        <div class="centro1" style="margin-top: 60px;">
+            <div class="modulo">
+                <h4 style="text-align: center;">SESIONES</h4>
+            </div>
+            <div class="col-sm-4" id="busca">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="name" placeholder="Buscar">
+                </div>
+            </div>
+            <div class="boton">
+                <button href="#" data-bs-toggle="modal" data-bs-target="#crearsesion" class="btn btn-primary">+ Crear
+                    nueva sesión</button>
+            </div>
+        </div>
+
+        <div>
+            <ng-container *ngFor="let s of sesiones" >
+                <div class="accordion" id="accordionExample" style="margin-top: 30px;" *ngIf="(s.es_sesion == '1') && (s.capacitacion.id == id_cap)" >
+                    <div class="accordion-item">
+                        <div
+                            style=" height: 80px; width: 100%;display: flex; justify-content: space-between;padding: 0px 20px; align-items: center;">
+    
+                            <span style="width: 200px;" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <h5>{{s.de_tema}}</h5> {{s.fe_inicio | date:'dd-MM-yyyy'}} al {{s.fe_fin | date:'dd-MM-yyyy'}}
+                            </span>
+                            <div>
+                                <button (click)="enviarSesionID(s.id)" style="margin-left: 10px;" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#agregarrecurso">+ Agregar Recurso</button>
+                                <button (click)="cargarDatosSesion(s.id)" style="margin-left: 10px;" class="btn btn-success"><i class="fas fa-edit" data-bs-toggle="modal" data-bs-target="#editarsesion"></i></button>
+                                <button (click)="deleteSesion(s)" style="margin-left: 10px;" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                            </div>
+                        </div>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                            data-bs-parent="#accordionExample">
+                            
+                                <div class="accordion-body" style="padding-left: 40px; padding-right: 40px;">
+                                    <ng-container *ngFor="let r of recursos" >
+                                        <div class="row" style="border: 1px solid black; padding: 8px; margin-bottom: 4px; display: flex;" *ngIf="(r.es_recurso == '1') && (r.sesion.id == s.id)">
+                                            <div class="col-1">
+                                                <i class="fas fa-file-pdf td-icono"></i>
+                                            </div>
+                                            <div class="col-9" style="text-align: justify; padding-top: 5px;">
+                                                <h5>{{r.no_recurso}}</h5>
+                                            </div>
+                                            <div class="col-2">
+                                                <button (click)="cargarDatosRecurso(r.id)" style="margin-left: 10px;" class="btn btn-success"><i class="fas fa-edit" data-bs-toggle="modal" data-bs-target="#editarrecurso"></i></button>
+                                                <button (click)="deleteRecurso(r)" style="margin-left: 10px;" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                                            </div>
+                                        </div>
+                                    </ng-container>
+                                </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </ng-container>
+            
+
+            
+        </div>
+        
+
+    </div>
+</div>
+
+<!--Crear Sesion-->
+
+<div class="modal fade" id="crearsesion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog tamaño-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Crear nueva sesion</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" #closebutton></button>
+            </div>
+            <div class="modal-body" style="padding: 30px;">
+
+                <div class="mb-3 row">
+                    <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Tema:</label>
+                    <div class="col-sm-10">
+                      <input [(ngModel)]="sesion.de_tema" type="text" class="form-control" id="inputNombre" name="de_tema" #tema>
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Fecha inicio:</label>
+                    <div class="col-sm-10">
+                      <input [(ngModel)]="sesion.fe_inicio" type="date" class="form-control" id="inputNombre" name="fe_inicio" #fech_inicio>
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Fecha fin:</label>
+                    <div class="col-sm-10">
+                      <input [(ngModel)]="sesion.fe_fin" type="date" class="form-control" id="inputNombre" name="fe_fin" #fech_fin>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button (click)="crearSesion()" type="button" class="btn btn-primary">Crear</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Editar Sesion-->
+
+<div class="modal fade" id="editarsesion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog tamaño-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Editar nueva sesion</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" #closebutton2></button>
+            </div>
+            <div class="modal-body" style="padding: 30px;">
+
+                <div class="mb-3 row">
+                    <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Tema:</label>
+                    <div class="col-sm-10">
+                      <input [(ngModel)]="sesion_edit.de_tema" type="text" class="form-control" id="inputNombre">
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Fecha inicio:</label>
+                    <div class="col-sm-10">
+                      <input [(ngModel)]="sesion_edit.fe_inicio" type="date" class="form-control" id="inputNombre">
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Fecha fin:</label>
+                    <div class="col-sm-10">
+                      <input [(ngModel)]="sesion_edit.fe_fin" type="date" class="form-control" id="inputNombre">
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button (click)="editarSesion()" type="button" class="btn btn-primary">Editar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!--Crear Recurso-->
+
+<div class="modal fade" id="agregarrecurso" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog tamaño-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Agregar recurso</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" #closebutton3></button>
+            </div>
+            <div class="modal-body" style="padding: 30px;">
+                <div class="mb-3 row">
+                    <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Tipo:</label>
+                    <div class="col-sm-10">
+                        <select (change)="getSelectedValue($event)" class="form-select" aria-label="Default select example" [(ngModel)]="recurso.tipo_recurso" name="tipo_recurso.id">
+                            <optgroup label="Selecciona">
+                                <option *ngFor="let tr of tiporecursos" [ngValue]="tr" #tipo_rec >{{tr.no_tipo_recurso}}</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
+                <ng-container [ngSwitch]="validador1">
+                    <div id="cambiable1" *ngSwitchCase="false">
+                        <div class="mb-3 row">
+                            <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Nombre:</label>
+                            <div class="col-sm-10">
+                              <input [(ngModel)]="recurso.no_recurso" type="text" class="form-control" id="inputNombre" name="no_recurso" #nombre_rec>
+                            </div>
+                        </div>
+    
+                        <div class="mb-3 row">
+                            <label for="inputNombre" class="col-sm-2 col-form-label label-bold">URL:</label>
+                            <div class="col-sm-10">
+                              <input [(ngModel)]="recurso.di_url" type="text" class="form-control" id="inputNombre" name="di_url" #url_rec>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                    <div id="cambiable2" *ngSwitchCase="true">
+                        <div class="mb-3 row">
+                            <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Nombre:</label>
+                            <div class="col-sm-10">
+                              <input [(ngModel)]="recurso.no_recurso" type="text" class="form-control" id="inputNombre" name="no_recurso" #nombre_rec>
+                            </div>
+                        </div>
+    
+                        <div class="mb-3 row">
+                            <label for="inputNombre" class="col-sm-2 col-form-label label-bold">URL:</label>
+                            <div class="col-sm-10">
+                              <input [(ngModel)]="recurso.di_url" type="text" class="form-control" id="inputNombre" name="di_url" #url_rec>
+                            </div>
+                        </div>
+                        <div class="cajapreguntas" [innerHTML]="htmlcontent" #pregunta>
+                            
+                            <div style="margin-left: 25px; margin-bottom: 20px;">
+
+                                <div class="row">
+                                    <div class="col-9">
+                                        <div class="mb-3 row">
+                                            <label for="inputNombre" class="col-sm-2 col-form-label label-bold"><i class="far fa-circle"></i></label>
+                                            <div class="col-sm-10">
+                                              <input type="text" class="form-control" id="inputNombre">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="mb-3 ">
+                                            <div><i class="fas fa-check"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <button class="btn btn-primary">+ Añadir</button>
+                            </div>
+                            <button class="btn btn-primary" (click)="agregarPregunta()">+ Añadir pregunta</button>
+                        </div>
+                        
+                    </div>
+                </ng-container>
+                
+                
+
+            </div>
+            <div class="modal-footer">
+                <button (click)="createRecurso()" type="button" class="btn btn-primary">Agregar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!--Editar Recurso-->
+
+<div class="modal fade" id="editarrecurso" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog tamaño-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Editar recurso</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" #closebutton4></button>
+            </div>
+            <div class="modal-body" style="padding: 30px;">
+                    <div class="mb-3 row">
+                        <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Tipo:</label>
+                        <div class="col-sm-10">
+                            <select class="form-select" aria-label="Default select example" [(ngModel)]="recurso_edit.tipo_recurso" [ngModel]="recurso_edit.tipo_recurso">
+                                <optgroup label="Selecciona">
+                                    <option *ngFor="let tr of tiporecursos" [ngValue]="tr" #tipo_rec>{{tr.no_tipo_recurso}}</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="cambiable1">
+                        <div class="mb-3 row">
+                            <label for="inputNombre" class="col-sm-2 col-form-label label-bold">Nombre:</label>
+                            <div class="col-sm-10">
+                              <input [(ngModel)]="recurso_edit.no_recurso" type="text" class="form-control" id="inputNombre">
+                            </div>
+                        </div>
+    
+                        <div class="mb-3 row">
+                            <label for="inputNombre" class="col-sm-2 col-form-label label-bold">URL:</label>
+                            <div class="col-sm-10">
+                              <input [(ngModel)]="recurso_edit.di_url" type="text" class="form-control" id="inputNombre">
+                            </div>
+                        </div>
+                        
+                    </div>                
+
+            </div>
+            <div class="modal-footer">
+                <button (click)="editarRecurso()" type="button" class="btn btn-primary">Editar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
