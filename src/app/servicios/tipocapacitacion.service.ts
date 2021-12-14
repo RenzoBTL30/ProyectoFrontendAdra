@@ -11,7 +11,9 @@ import { AuthService } from '../core/presentation/views/login/auth.service';
 })
 export class TipoCapacitacionService {
 
-  private urltipocapacitacion:string ='http://localhost:9292/api/tiposcapacitacion';
+  //private urltipocapacitacion:string ='http://localhost:9292/api/tiposcapacitacion';
+  private urltipocapacitacion:string ='https://app-adra.herokuapp.com/api/tiposcapacitacion';
+
   constructor(private http : HttpClient, private router: Router, private authService: AuthService) { }
 
   private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});

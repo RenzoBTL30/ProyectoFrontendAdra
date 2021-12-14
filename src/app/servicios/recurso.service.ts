@@ -12,7 +12,11 @@ import { AuthService } from '../core/presentation/views/login/auth.service';
 })
 export class RecursoService {
 
-  private urlrecurso:string ='http://localhost:9292/api/recursos';
+  //private urlrecurso:string ='http://localhost:9292/api/recursos';
+  private urlrecurso:string ='https://app-adra.herokuapp.com/api/recursos';
+
+
+
   constructor(private http : HttpClient, private router: Router, private authService: AuthService) { }
 
   private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});

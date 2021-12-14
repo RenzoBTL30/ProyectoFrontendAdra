@@ -11,7 +11,8 @@ import { Alternativa } from '../models/alternativa';
 })
 export class AlternativaService {
 
-  private urlalternativa:string ='http://localhost:9292/api/alternativas';
+  // private urlalternativa:string ='http://localhost:9292/api/alternativas';
+  private urlalternativa:string ='https://app-adra.herokuapp.com/api/alternativas';
   constructor(private http : HttpClient, private router: Router, private authService: AuthService) { }
 
   private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});

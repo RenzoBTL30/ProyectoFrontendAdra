@@ -12,7 +12,9 @@ import { SeminarioList } from '../models/seminarioList';
 })
 export class CapacitacionService {
 
-  private urlcapacitacion:string ='http://localhost:9292/api/capacitaciones';
+  //private urlcapacitacion:string ='http://localhost:9292/api/capacitaciones';
+  private urlcapacitacion:string ='https://app-adra.herokuapp.com/api/capacitaciones';
+
   constructor(private http : HttpClient, private router: Router, private authService: AuthService) { }
 
   private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});

@@ -12,7 +12,9 @@ import { listarPedidosBancoAsesor } from '../models/listapedidoAsesor';
 })
 export class PedidooracionService {
 
-  private url:string ='http://localhost:9292/api/pedidosoracion';
+  //private url:string ='http://localhost:9292/api/pedidosoracion';
+  private url:string ='https://app-adra.herokuapp.com/api/pedidosoracion';
+
   constructor(private http : HttpClient, private router: Router, private authService: AuthService) { }
   
   private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});

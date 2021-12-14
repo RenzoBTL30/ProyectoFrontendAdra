@@ -11,7 +11,10 @@ import { Usuario } from '../models/usuario';
 })
 export class UsuarioService {
 
-  private urlusuario:string ='http://localhost:9292/api/usuarios';
+  //private urlusuario:string ='http://localhost:9292/api/usuarios';
+  private urlusuario:string ='https://app-adra.herokuapp.com/api/usuarios';
+
+
   constructor(private http : HttpClient, private router: Router, private authService: AuthService) { }
 
   private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});

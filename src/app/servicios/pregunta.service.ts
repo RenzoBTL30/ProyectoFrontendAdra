@@ -11,7 +11,10 @@ import { Pregunta } from '../models/pregunta';
 })
 export class PreguntaService {
 
-  private urlpregunta:string ='http://localhost:9292/api/preguntas';
+  //private urlpregunta:string ='http://localhost:9292/api/preguntas';
+  private urlpregunta:string ='https://app-adra.herokuapp.com/api/preguntas';
+
+
   constructor(private http : HttpClient, private router: Router, private authService: AuthService) { }
 
   private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});

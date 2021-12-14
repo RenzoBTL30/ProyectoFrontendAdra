@@ -12,7 +12,9 @@ import { Sesion } from '../models/sesion';
 })
 export class SesionService {
 
-  private urlsesion:string ='http://localhost:9292/api/sesiones';
+  //private urlsesion:string ='http://localhost:9292/api/sesiones';
+  private urlsesion:string ='https://app-adra.herokuapp.com/api/sesiones';
+
   constructor(private http : HttpClient, private router: Router, private authService: AuthService) { }
 
   private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});

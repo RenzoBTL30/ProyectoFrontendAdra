@@ -11,7 +11,7 @@ import { BancoComunal } from '../models/banco_comunal';
 })
 export class BancocomunalService {
 
-  private urlbanco:string ='http://localhost:9292/api/bancoscomunales';
+  private urlbanco:string ='https://app-adra.herokuapp.com/api/bancoscomunales';
   constructor(private http : HttpClient, private router: Router, private authService: AuthService) { }
 
   private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});

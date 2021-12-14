@@ -15,7 +15,9 @@ import { Persona } from '../models/persona';
 })
 export class PersonaService {
 
-  private urlpersona:string ='http://localhost:9292/api/personas';
+  //private urlpersona:string ='http://localhost:9292/api/personas';
+  private urlpersona:string ='https://app-adra.herokuapp.com/api/personas';
+
   constructor(private http : HttpClient, private router: Router, private authService: AuthService) { }
 
   private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});

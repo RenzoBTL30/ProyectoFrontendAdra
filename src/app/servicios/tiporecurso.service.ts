@@ -12,7 +12,10 @@ import { TipoRecurso } from '../models/tipo_recurso';
 })
 export class TiporecursoService {
 
-  private urltiporec:string ='http://localhost:9292/api/tiposrecurso';
+  //private urltiporec:string ='http://localhost:9292/api/tiposrecurso';
+  private urltiporec:string ='https://app-adra.herokuapp.com/api/tiposrecurso';
+
+
   constructor(private http : HttpClient, private router: Router, private authService: AuthService) { }
 
   private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});

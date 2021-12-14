@@ -16,7 +16,11 @@ import { Reporte6 } from '../models/reporte6';
 })
 export class ReporteService {
 
-  private urlreporte:string ='http://localhost:9292/api/reportes';
+  //private urlreporte:string ='http://localhost:9292/api/reportes';
+  private urlreporte:string ='https://app-adra.herokuapp.com/api/reportes';
+
+
+
   constructor(private http : HttpClient, private router: Router, private authService: AuthService) { }
 
   private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});

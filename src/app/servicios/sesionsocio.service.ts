@@ -11,7 +11,10 @@ import { SesionSocio } from '../models/sesion_socio';
 })
 export class SesionsocioService {
 
-  private urlsesionsocio:string ='http://localhost:9292/api/sesionsocios';
+  //private urlsesionsocio:string ='http://localhost:9292/api/sesionsocios';
+  private urlsesionsocio:string ='https://app-adra.herokuapp.com/api/sesionsocios';
+
+
   constructor(private http : HttpClient, private router: Router, private authService: AuthService) { }
 
   private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});

@@ -11,7 +11,10 @@ import { Socio } from '../models/socio';
 })
 export class SocioService {
 
-  private urlpersona:string ='http://localhost:9292/api/socios';
+  //private urlpersona:string ='http://localhost:9292/api/socios';
+  private urlpersona:string ='https://app-adra.herokuapp.com/api/socios';
+
+
   constructor(private http : HttpClient, private router: Router, private authService: AuthService) { }
 
   private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
